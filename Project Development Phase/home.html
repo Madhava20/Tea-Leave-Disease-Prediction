@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeaLeavesDisesase Classification</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet"> 
+
+	
+	<!-- googlefonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Great+Vibes&family=Pacifico&display=swap" rel="stylesheet">
+	<!-- googlefonts -->
+	<!-- nav_script -->
+</head>
+<body>
+    
+	<nav class="navbar navbar-expand-lg navbar-light  navcss">
+		<a class="navbar-brand navfont" href="{{ url_for('home') }}">Tealeaves Disease Detector</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+	  
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		  <ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+			  <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item active">
+			  <a class="nav-link" href="{{ url_for('index') }}">Detect</a>
+			</li>
+			<li class="nav-item dropdown active">
+			  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Services
+			  </a>
+			  <div class="dropdown-menu  navcss" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="#">Live Demo</a>
+				<a class="dropdown-item" href="{{ url_for('pricing') }}">Pricing</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="{{ url_for('diseases') }}">Diseases</a>
+			  </div>
+			</li>
+		    <li class="nav-item active">
+				<a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
+			  </li>
+			 <li class="nav-item active">
+ 				<a class="nav-link" href="{{ url_for('aboutus') }}">About Us</a>
+ 			  </li>  
+		  </ul>
+		  <form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		  </form>
+		  <div class="dropdown" style="margin-left: 20px;margin-right: 70px; background-color: rgb(205, 245, 208);">
+			<button class="btn  dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<img src="{{ url_for('static', filename='images/login.jpg') }}" alt="" class="loginimg">
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="background-color: rgb(205, 245, 208);" >
+			  <button class="dropdown-item" type="button">Login</button>
+			  <button class="dropdown-item" type="button">Signup</button>
+			  <button class="dropdown-item" type="button">My account</button>
+			</div>
+		  </div>
+		</div>
+	  </nav>
+	  
+	  
+  <!-- Title -->
+  <section id="title" class="gradient-background">
+<div class="container col-xxl-8 px-4 pt-5">
+      <div class="row flex-lg-row-reverse align-items-center g-5 pt-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+          <img src="{{ url_for('static', filename='images/homefarm.jpg') }}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" height="200"
+            loading="lazy">
+        </div>
+        <div class="col-lg-6">
+          <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Harvest Certainity with every steep .</h1>
+
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+           
+              <a href="{{ url_for('index') }}">
+                <button type="button" class="btn btn-light btn-lg px-4 me-md-2"> Predicti Now..</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+     <!-- Features -->
+  <section id="features">
+    <div class="container mt-5">
+      <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="col d-flex align-items-start">
+          <div
+            class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+            <svg xmlns="http://www.w3.org/2000/svg" height="30" fill="currentColor" class="bi bi-check2-circle"
+              viewBox="0 0 16 16">
+              <path
+                d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z" />
+              <path
+                d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="fs-2">Easy to use.</h3>
+            <p>Cultivate success effortlessly -our website plows through simplicity for a seamless farming experience.
+            </p>
+
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <div
+            class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+            <svg xmlns="http://www.w3.org/2000/svg" height="30" fill="currentColor" class="bi bi-mortarboard"
+              viewBox="0 0 16 16">
+              <path
+                d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5ZM8 8.46 1.758 5.965 8 3.052l6.242 2.913L8 8.46Z" />
+              <path
+                d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Zm-.068 1.873.22-.748 3.496 1.311a.5.5 0 0 0 .352 0l3.496-1.311.22.748L8 12.46l-3.892-1.556Z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="fs-2">Elite Clientele.</h3>
+            <p>We have all the information about predicting diseases , in tea leaves .</p>
+
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <div
+            class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-cup-hot-fill" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M.5 6a.5.5 0 0 0-.488.608l1.652 7.434A2.5 2.5 0 0 0 4.104 16h5.792a2.5 2.5 0 0 0 2.44-1.958l.131-.59a3 3 0 0 0 1.3-5.854l.221-.99A.5.5 0 0 0 13.5 6H.5ZM13 12.5a2.01 2.01 0 0 1-.316-.025l.867-3.898A2.001 2.001 0 0 1 13 12.5Z" />
+              <path
+                d="m4.4.8-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 3.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 3.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 3 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 4.4.8Zm3 0-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 6.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 6.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 6 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 7.4.8Zm3 0-.003.004-.014.019a4.077 4.077 0 0 0-.204.31 2.337 2.337 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.198 3.198 0 0 1-.202.388 5.385 5.385 0 0 1-.252.382l-.019.025-.005.008-.002.002A.5.5 0 0 1 9.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 9.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 9 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 10.4.8Z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="fs-2">Guaranteed to work.</h3>
+            <p>Sow with confidence,reap with certainity-our tea prediction website ,is your guaranteed harvest ally.</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Testimonial -->
+  <section id="testimonial">
+    <div class="my-5">
+      <div class="p-5 text-center bg-body-tertiary">
+        <div class="container py-5">
+          <h2 class="text-body-emphasis">"I no longer have to navigate a maze of uncertainity ,risking crop looses to
+            the unpredictable dance of pests and diseases in their tea fields.
+            "</h2>
+          <img class="profile-img mt-5" src="{{ url_for('static', filename='images/hometest.jpg') }}" alt="tea image">
+          <p class="col-lg-8 mx-auto lead mt-2">
+            Pebbles, New York
+          </p>
+        </div>
+
+    
+      </div>
+    </div>
+  </section>
+  
+  <!-- different modles -->
+  <section id="models">
+
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h2 class="display-4 fw-normal">Models Employed for the project</h2>
+      <p class="fs-5 text-body-secondary">Transfer Learning Models.
+    </div>
+    <section id="features">
+      <div class="container mt-5">
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+          <div class="col d-flex align-items-start">
+            <div
+              class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+              <!-- <svg xmlns="http://www.w3.org/2000/svg" height="30" fill="currentColor" class="bi bi-check2-circle"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z" />
+                  <path
+                    d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z" />
+                </svg> -->
+            </div>
+            <div>
+              <h3 class="fs-2">VGG-16</h3>
+              <p>VGG-16, or the Visual Geometry Group's 16-layer model, is a deep convolutional neural network
+                architecture used for image classification tasks. It's known for its simplicity and consists of 16
+                layers with trainable parameters, including 13 convolutional layers and 3 fully connected layers. VGG-16
+                gained popularity for its effectiveness in various computer vision tasks, although its large number of
+                parameters makes it computationally expensive.
+              </p>
+
+            </div>
+          </div>
+          <div class="col d-flex align-items-start">
+            <div
+              class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+              <!-- <svg xmlns="http://www.w3.org/2000/svg" height="30" fill="currentColor" class="bi bi-mortarboard"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5ZM8 8.46 1.758 5.965 8 3.052l6.242 2.913L8 8.46Z" />
+                  <path
+                    d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Zm-.068 1.873.22-.748 3.496 1.311a.5.5 0 0 0 .352 0l3.496-1.311.22.748L8 12.46l-3.892-1.556Z" />
+                </svg> -->
+            </div>
+            <div>
+              <h3 class="fs-2">Inception V3</h3>
+              <p>Inception V3 is a deep convolutional neural network architecture designed for image classification and
+                object detection tasks. It's part of the Inception family developed by Google's research team. Inception
+                V3 is known for its efficient use of computational resources and incorporates inception modules, which
+                use multiple filter sizes in parallel to capture features at different scales. This helps improve the
+                network's ability to recognize patterns and objects in images. Overall, Inception V3 balances accuracy
+                and computational efficiency.</p>
+
+            </div>
+          </div>
+          <div class="col d-flex align-items-start">
+            <div
+              class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+
+            </div>
+            <div>
+              <h3 class="fs-2">Xception</h3>
+              <p>Xception, short for "Extreme Inception," is a deep convolutional neural network architecture. It's
+                closely related to the Inception architecture but introduces a novel approach called depthwise separable
+                convolutions. In Xception, each convolutional operation is split into a depthwise convolution and a
+                pointwise convolution, which helps reduce the number of parameters while maintaining expressive power.
+                This design makes Xception more computationally efficient compared to traditional convolutional
+                architectures. It's particularly useful for image classification tasks and has shown strong performance
+                in various computer vision applications.</p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+     <!-- footer -->
+	 <section id="contact" class="gradient-background" style="background-color: rgb(205, 245, 208) ;">
+		<a style="font-family: 'Great Vibes', Agbalumo  ;font-weight: 1000; font-size: 40px; margin-left: 90px; text-decoration: none; color: black; margin-top: 20px;" href="{{ url_for('home') }}">Tealeaves Disease Detector</a>
+		<div class="container ">
+		  <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 mt-5 border-top">
+			<div class="col mb-3">
+	
+			  <h5 class = "text-uppercase fw-bold mb-4">Reach At</h5>
+			 <ul class="nav flex-column">
+			   <li class="nav-item mb-2">
+				<p>
+				  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+					<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+				  </svg> Location
+				 </p></li>
+				 <li class="nav-item mb-2"><p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+				   <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+				 </svg> + 01 234 567 88</p>
+				
+			   </li>
+			   <li class="nav-item mb-2"><p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+				<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+			  </svg> demo@gmail.com</p>
+			 </li>
+			 <li class="nav-item mb-2">
+			   <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+				<path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+			  </svg>
+			  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+				<path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+			  </svg>
+			  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+				<path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/>
+			  </svg>
+			  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+				<path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+			  </svg></p>
+			 </li>
+			 </ul>
+			</div>
+	
+		
+	
+			<div class="col mx-3 mb-3">
+			  <h5 class = "text-uppercase fw-bold mb-4">About</h5>
+			  <p>Cultivate a healthier tea harvest with our groundbreaking deep learning project. Using Convolutional Neural Networks, we predict diseases in tea leaves, ensuring a bountiful and robust yield.</p>
+			</div>
+		
+			<div class="col mx-5 mb-3">
+			  <h5 class = "text-uppercase fw-bold mb-4">Links</h5> 
+			  <ul class="nav flex-column">
+				<li class="nav-item mb-2"><a href="{{ url_for('home') }}" class="nav-link p-0 text-body-secondary">HOME</a></li>
+				<li class="nav-item mb-2"><a href="{{ url_for('aboutus') }}" class="nav-link p-0 text-body-secondary">ABOUT US</a></li>
+				<li class="nav-item mb-2"><a href="{{ url_for('index') }}" class="nav-link p-0 text-body-secondary">DETECT</a></li>
+				
+			  </ul>
+			</div>
+	
+			
+			<div class="container p-4 pb-0">
+			  <!-- Section: Form -->
+			  <section class="">
+				<form action="">
+				  <!--Grid row-->
+				  <div class="row d-flex justify-content-center">
+					<!--Grid column-->
+					<div class="col-auto">
+					  <p class="pt-2">
+						<strong>Sign up for our newsletter</strong>
+					  </p>
+					</div>
+					<!--Grid column-->
+		  
+					<!--Grid column-->
+					<div class="col-md-5 col-12">
+					  <!-- Email input -->
+					  <div class="form-outline form-white mb-4">
+						<input type="email" id="form5Example29" class="form-control"/>
+						<label class="form-label" for="form5Example29">Email address</label>
+					  </div>
+					</div>
+					<!--Grid column-->
+		  
+					<!--Grid column-->
+					<div class="col-auto">
+					  <!-- Submit button -->
+					  <button type="submit" class="btn btn-outline-darrk mb-4">
+						Subscribe
+					  </button>
+					</div>
+					<!--Grid column-->
+				  </div>
+				  <!--Grid row-->
+				</form>
+			  </section>
+			  <!-- Section: Form -->
+			</div>
+			<!-- Grid column -->
+		  </div>
+		  <!-- Grid row -->
+		</div>
+		  </footer>
+		</div>
+	  </section>
+	 <!-- footer -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

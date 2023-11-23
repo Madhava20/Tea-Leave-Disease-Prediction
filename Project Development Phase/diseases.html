@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeaLLeavesDisesase Classification</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet"> 
+
+	
+	<!-- googlefonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Great+Vibes&family=Pacifico&display=swap" rel="stylesheet">
+	<!-- googlefonts -->
+	<!-- nav_script -->
+	<style>
+	 .div4 {
+            background-color: #78f576;
+            padding: 75px;
+        }
+
+        .p1 {
+            color: rgb(0, 0, 0);
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 1000;
+            text-align: center;
+        }
+
+        .h1 {
+            color: rgb(0, 0, 0);
+            font-family:'Times New Roman', Times, serif;
+            font-weight: 1000;
+            font-style: normal;
+            text-align: center;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Float four columns side by side */
+        .column {
+            float: left;
+            width: 25%;
+            padding: 0 10px;
+        }
+
+        /* Remove extra left and right margins, due to padding */
+        .row {
+            margin: 0 -5px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Responsive columns */
+        @media screen and (max-width: 600px) {
+            .column {
+                width: 100%;
+                display: block;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Style the counter cards */
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding: 16px;
+            text-align: center;
+            background-color: #f1f1f1;
+        }
+
+        .div5 {
+            background-color: rgb(245, 190, 145);
+
+        }
+
+        .card-img-top {
+              width: 100%;
+               height: 15vw;
+               object-fit: cover;
+            }
+        .back_img{
+             /* Make the image fill the entire viewport */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+	opacity: 80%;
+	filter: contrast(200%);
+        }
+	</style>
+		
+	
+</head>
+<body>
+    
+	<nav class="navbar navbar-expand-lg navbar-light  navcss">
+		<a class="navbar-brand navfont" href="{{ url_for('home') }}">Tealeaves Disease Detector</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+	  
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		  <ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+			  <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item active">
+			  <a class="nav-link" href="{{ url_for('index') }}">Detect</a>
+			</li>
+			<li class="nav-item dropdown active">
+			  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Services
+			  </a>
+			  <div class="dropdown-menu  navcss" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="#">Live Demo</a>
+				<a class="dropdown-item" href="{{ url_for('pricing') }}">Pricing</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="{{ url_for('diseases') }}">Diseases</a>
+			  </div>
+			</li>
+		    <li class="nav-item active">
+				<a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
+			  </li>
+			<li class="nav-item active">
+ 				<a class="nav-link" href="{{ url_for('aboutus') }}">About Us</a>
+ 			  </li>  
+		  </ul>
+		  <form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		  </form>
+		  <div class="dropdown" style="margin-left: 20px;margin-right: 70px; background-color: rgb(205, 245, 208);">
+			<button class="btn  dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<img src="{{ url_for('static', filename='images/login.jpg') }}" alt="" class="loginimg">
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="background-color: rgb(205, 245, 208);" >
+			  <button class="dropdown-item" type="button">Login</button>
+			  <button class="dropdown-item" type="button">Signup</button>
+			  <button class="dropdown-item" type="button">My account</button>
+			</div>
+		  </div>
+		</div>
+	  </nav>
+	  
+	  <!-- diseases -->
+      <section id="title" >
+        <img class="back_img"  src="https://img.freepik.com/premium-vector/tea-leaves-background-realistic-green-falling-whirling-leaves-banner-advertising-packaging-design-vector-illustration-green-tea-rain-background_176516-1412.jpg" alt="">
+
+        <div class="div4 mt-5 mb- mx-5">
+            <h1 class="h1">OUR PROJECT ON TEA LEAVES DISEASE</h1>
+            <p class="p1">Tea leaves pictures can be used for the prediction of various tea leaves diseases which causes
+                huge
+                loss in agricultural system every year. The proposed system - Tea leaves Image Processing System helps
+                us to the
+                analysis of leaves and thereby help us in predicting various leaves diseases. The input to the proposed
+                system
+                is the Tea leaves Image. The leaves portion is segmented and leaves color, shape and texture features
+                are
+                extracted and taken together to form a feature vector and then analysis of leaves are done which is used
+                for the
+                diagnosis of various tea leaves diseases. This proposed system will help the farmers in the early
+                diagnosis of
+                diseases.<br><br>
+                The tea leaf diseases we will be discussing are Anthracnose , Algal Leaf , Bird Eye Spot , Brown blight
+                , Gray Light , Red Leaf Spot and White Spot.</p>
+
+        </div>
+        <div class="div5 p-3 pb-md-4 mt-4 mb-4 mx-5 text-center">
+            <h1 class="h1">Tea Leaf Diseases</h1>
+        </div>
+<div class="row">
+        <div class="column">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top"
+                    src="https://plantwiseplusknowledgebank.org/cms/10.1079/pwkb.species.25356/asset/71cd2d2a-57b4-4c15-ae3f-726795e16fcc/assets/graphic/glomcin4.jpg"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Anthracnose</h5>
+                    <p class="card-text">Anthracnose is a fungal disease causing dark lesions on plants. Prevent it by pruning affected parts, improving air circulation, and managing water. Fertilize with balanced nutrients and organic matter to boost plant health and resistance. In severe cases, copper-based fungicides may be necessary.</p>
+                    <a href="https://apsjournals.apsnet.org/doi/10.1094/PDIS-07-19-1518-RE" class="btn btn-primary">See More</a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="data:image/jpeg;base64,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" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Algal Leaf</h5>
+                    <p class="card-text">Algal leaf disease manifests as greenish or brownish spots on leaves due to algae growth. Prevent it by promoting good drainage, avoiding overwatering, and maintaining proper spacing for air circulation. Use balanced fertilizers with proper nutrient levels to discourage algal proliferation. Additionally, copper-based fungicides can help control severe cases.</p>
+                    <a href="https://agritech.tnau.ac.in/crop_protection/tea_diseases_1.html" class="btn btn-primary">See More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="https://agritech.tnau.ac.in/crop_protection/images/rubber_disease/3.birdseyespot..jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Bird Eye Spot</h5>
+                    <p class="card-text">Bird's Eye Spot is a fungal disease causing small, dark spots on leaves. Control it by pruning affected areas, promoting air circulation, and avoiding overhead watering. Fertilize with balanced nutrients to enhance plant health and resistance. Copper-based fungicides can be used for severe cases.</p>
+                    <a href="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/iet-nbt.2017.0023" class="btn btn-primary">See More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="data:image/jpeg;base64,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" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Brown Blight</h5>
+                    <p class="card-text">Brown Blight is a disease characterized by browning and withering of plant tissues. Prevent it by maintaining proper plant hygiene, pruning affected parts, and ensuring well-drained soil. Use balanced fertilizers with essential nutrients to bolster plant health. Fungicides, especially those containing copper, can be applied in severe cases for control.</p>
+                    <a href="https://agritech.tnau.ac.in/crop_protection/tea_diseases_2.html" class="btn btn-primary">See More</a>
+                </div>
+            </div>
+        </div>
+</div>
+
+        <div class="column mt-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="https://www.researchgate.net/publication/350160136/figure/fig10/AS:1053468525617155@1628177877826/Symptoms-of-gray-blight-on-tea-leaves-in-A-initial-and-B-advanced-stages.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Gray Light</h5>
+                    <p class="card-text">Gray Blight is a disease marked by grayish lesions on plants. To prevent it, practice good sanitation, remove affected plant parts, and ensure proper air circulation. Use well-balanced fertilizers to promote plant health and resilience. Apply fungicides, particularly those with copper, if the disease persists.</p>
+                    <a href="https://www.researchgate.net/figure/Symptoms-of-gray-blight-on-tea-leaves-in-A-initial-and-B-advanced-stages_fig10_350160136" class="btn btn-primary">See More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="column mt-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="https://meritnation-question-images.s3.ap-southeast-1.amazonaws.com/toppr_ext/questions/106366_55356_ans.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Red Leaf Spot</h5>
+                    <p class="card-text">Red Leaf Spot is a disease causing red lesions on leaves. Prevent it by maintaining good plant hygiene, pruning affected parts, and providing adequate air circulation. Use balanced fertilizers with essential nutrients to support plant health. Apply fungicides, especially those containing copper, if the disease becomes severe.</p>
+                    <a href="https://iopscience.iop.org/article/10.1088/1742-6596/1486/5/052023" class="btn btn-primary">See More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="column mt-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="data:image/jpeg;base64,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" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">White Spot</h5>
+                    <p class="card-text">White Spot is a disease characterized by white lesions on plants. To combat it, practice good plant hygiene, remove affected parts, and ensure proper air circulation. Use balanced fertilizers with essential nutrients to strengthen plant resistance. Fungicides, including copper-based ones, can be applied if the disease persists.</p>
+                    <a href="https://www.bonsaiempire.com/forum/help-me/9179-fukien-tea-with-white-spots-and-losing-leaves" class="btn btn-primary">See More</a>
+                </div>
+            </div>
+
+        </div>
+</section>
+
+	  <!-- diseases -->
+
+
+	 <!-- footer -->
+	
+</body>
+</html>

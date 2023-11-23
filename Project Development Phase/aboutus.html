@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeaLeavesDisesase Classification</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet"> 
+
+	
+	<!-- googlefonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Great+Vibes&family=Pacifico&display=swap" rel="stylesheet">
+	<!-- googlefonts -->
+	<!-- nav_script -->
+	<style>
+	* {
+  font-family: Nunito, sans-serif;
+}
+
+.text-blk {
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  line-height: 25px;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+.responsive-cell-block {
+  min-height: 75px;
+}
+
+.responsive-container-block {
+  min-height: 75px;
+  height: fit-content;
+  width: 100%;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+  justify-content: flex-start;
+}
+
+.responsive-container-block.bigContainer {
+  padding-top: 0px;
+  padding-right: 50px;
+  padding-bottom: 0px;
+  padding-left: 50px;
+  margin-top: 50px;
+  margin-right: 0px;
+  margin-bottom: 50px;
+  margin-left: 0px;
+}
+
+.responsive-container-block.Container {
+  max-width: 1320px;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 0px;
+  padding-left: 10px;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+}
+
+.mainImg {
+  width: 100%;
+  height: 800px;
+  object-fit: cover;
+}
+
+.blueDots {
+  position: absolute;
+  top: 150px;
+  right: 15%;
+  z-index: -1;
+  left: auto;
+  width: 80%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.imgContainer {
+  position: relative;
+  width: 48%;
+}
+
+.responsive-container-block.textSide {
+  width: 48%;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  z-index: 100;
+}
+
+.text-blk.heading {
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 700;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 20px;
+  margin-left: 0px;
+}
+
+.text-blk.subHeading {
+  font-size: 18px;
+  line-height: 26px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 20px;
+  margin-left: 0px;
+}
+
+.cardImg {
+  width: 31px;
+  height: 31px;
+}
+
+.cardImgContainer {
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: rgb(229, 229, 229);
+  border-right-color: rgb(229, 229, 229);
+  border-bottom-color: rgb(229, 229, 229);
+  border-left-color: rgb(229, 229, 229);
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  margin-top: 0px;
+  margin-right: 10px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+}
+
+.responsive-cell-block.wk-desk-6.wk-ipadp-6.wk-tab-12.wk-mobile-12 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+  padding-right: 15px;
+  padding-bottom: 10px;
+  padding-left: 0px;
+}
+
+.text-blk.cardHeading {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 700;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+}
+
+.text-blk.cardSubHeading {
+  color: rgb(153, 153, 153);
+  line-height: 22px;
+}
+
+.explore {
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 700;
+  color: white;
+  background-color: rgb(244, 152, 146);
+  box-shadow: rgba(244, 152, 146, 0.25) 0px 10px 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  cursor: pointer;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: initial;
+  border-right-style: initial;
+  border-bottom-style: initial;
+  border-left-style: initial;
+  border-top-color: initial;
+  border-right-color: initial;
+  border-bottom-color: initial;
+  border-left-color: initial;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  padding-top: 17px;
+  padding-right: 40px;
+  padding-bottom: 17px;
+  padding-left: 40px;
+}
+
+.explore:hover {
+  background-image: initial;
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: rgb(244, 182, 176);
+}
+
+#ixvck {
+  margin-top: 60px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+}
+
+.redDots {
+  position: absolute;
+  bottom: -350px;
+  right: -100px;
+  height: 500px;
+  width: 400px;
+  object-fit: cover;
+  top: auto;
+}
+
+@media (max-width: 1024px) {
+  .responsive-container-block.Container {
+    position: relative;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .mainImg {
+    bottom: 0px;
+  }
+
+  .imgContainer {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: auto;
+    width: 60%;
+  }
+
+  .responsive-container-block.textSide {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    width: 70%;
+  }
+
+  .responsive-container-block.Container {
+    flex-direction: column-reverse;
+  }
+
+  .imgContainer {
+    position: relative;
+    width: auto;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+  }
+
+  .responsive-container-block.textSide {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 20px;
+    margin-left: 0px;
+    width: 100%;
+  }
+
+  .responsive-container-block.Container {
+    flex-direction: row-reverse;
+  }
+
+  .responsive-container-block.Container {
+    flex-direction: column-reverse;
+  }
+}
+
+@media (max-width: 768px) {
+  .responsive-container-block.textSide {
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .text-blk.subHeading {
+    text-align: center;
+    font-size: 17px;
+    max-width: 520px;
+  }
+
+  .text-blk.heading {
+    text-align: center;
+  }
+
+  .imgContainer {
+    opacity: 0.8;
+  }
+
+  .imgContainer {
+    height: 500px;
+  }
+
+  .imgContainer {
+    width: 30px;
+  }
+
+  .responsive-container-block.Container {
+    flex-direction: column-reverse;
+  }
+
+  .responsive-container-block.Container {
+    flex-wrap: nowrap;
+  }
+
+  .responsive-container-block.textSide {
+    width: 100%;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 20px;
+    margin-left: 0px;
+  }
+
+  .imgContainer {
+    width: 90%;
+  }
+
+  .imgContainer {
+    height: 450px;
+    margin-top: 5px;
+    margin-right: 33.9062px;
+    margin-bottom: 0px;
+    margin-left: 33.9062px;
+  }
+
+  .redDots {
+    display: none;
+  }
+
+  .explore {
+    font-size: 16px;
+    line-height: 14px;
+  }
+}
+
+@media (max-width: 500px) {
+  .imgContainer {
+    position: static;
+    height: 450px;
+  }
+
+  .mainImg {
+    height: 100%;
+  }
+
+  .blueDots {
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    bottom: auto;
+    right: auto;
+  }
+
+  .imgContainer {
+    width: 100%;
+  }
+
+  .responsive-container-block.textSide {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+  }
+
+  .responsive-container-block.Container {
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    overflow-x: visible;
+    overflow-y: visible;
+  }
+
+  .responsive-container-block.bigContainer {
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding: 0 30px 0 30px;
+  }
+
+  .redDots {
+    display: none;
+  }
+
+  .text-blk.subHeading {
+    font-size: 16px;
+    line-height: 23px;
+  }
+
+  .text-blk.heading {
+    font-size: 28px;
+    line-height: 28px;
+  }
+
+  .responsive-container-block.textSide {
+    margin-top: 40px;
+    margin-right: 0px;
+    margin-bottom: 50px;
+    margin-left: 0px;
+  }
+
+  .imgContainer {
+    margin-top: 5px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    width: 100%;
+    position: relative;
+  }
+
+  .explore {
+    padding-top: 17px;
+    padding-right: 0px;
+    padding-bottom: 17px;
+    padding-left: 0px;
+    width: 100%;
+  }
+
+  #ixvck {
+    width: 90%;
+    margin-top: 40px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    font-size: 15px;
+  }
+
+  .blueDots {
+    bottom: 0px;
+    width: 100%;
+    height: 80%;
+    top: 10%;
+  }
+
+  .text-blk.cardHeading {
+    font-size: 16px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 8px;
+    margin-left: 0px;
+    line-height: 25px;
+  }
+
+  .responsive-cell-block.wk-desk-6.wk-ipadp-6.wk-tab-12.wk-mobile-12 {
+    padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+  }
+}
+
+/* responsive css */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&amp;display=swap');
+
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.wk-desk-1 {
+  width: 8.333333%;
+}
+
+.wk-desk-2 {
+  width: 16.666667%;
+}
+
+.wk-desk-3 {
+  width: 25%;
+}
+
+.wk-desk-4 {
+  width: 33.333333%;
+}
+
+.wk-desk-5 {
+  width: 41.666667%;
+}
+
+.wk-desk-6 {
+  width: 50%;
+}
+
+.wk-desk-7 {
+  width: 58.333333%;
+}
+
+.wk-desk-8 {
+  width: 66.666667%;
+}
+
+.wk-desk-9 {
+  width: 75%;
+}
+
+.wk-desk-10 {
+  width: 83.333333%;
+}
+
+.wk-desk-11 {
+  width: 91.666667%;
+}
+
+.wk-desk-12 {
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .wk-ipadp-1 {
+    width: 8.333333%;
+  }
+
+  .wk-ipadp-2 {
+    width: 16.666667%;
+  }
+
+  .wk-ipadp-3 {
+    width: 25%;
+  }
+
+  .wk-ipadp-4 {
+    width: 33.333333%;
+  }
+
+  .wk-ipadp-5 {
+    width: 41.666667%;
+  }
+
+  .wk-ipadp-6 {
+    width: 50%;
+  }
+
+  .wk-ipadp-7 {
+    width: 58.333333%;
+  }
+
+  .wk-ipadp-8 {
+    width: 66.666667%;
+  }
+
+  .wk-ipadp-9 {
+    width: 75%;
+  }
+
+  .wk-ipadp-10 {
+    width: 83.333333%;
+  }
+
+  .wk-ipadp-11 {
+    width: 91.666667%;
+  }
+
+  .wk-ipadp-12 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .wk-tab-1 {
+    width: 8.333333%;
+  }
+
+  .wk-tab-2 {
+    width: 16.666667%;
+  }
+
+  .wk-tab-3 {
+    width: 25%;
+  }
+
+  .wk-tab-4 {
+    width: 33.333333%;
+  }
+
+  .wk-tab-5 {
+    width: 41.666667%;
+  }
+
+  .wk-tab-6 {
+    width: 50%;
+  }
+
+  .wk-tab-7 {
+    width: 58.333333%;
+  }
+
+  .wk-tab-8 {
+    width: 66.666667%;
+  }
+
+  .wk-tab-9 {
+    width: 75%;
+  }
+
+  .wk-tab-10 {
+    width: 83.333333%;
+  }
+
+  .wk-tab-11 {
+    width: 91.666667%;
+  }
+
+  .wk-tab-12 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .wk-mobile-1 {
+    width: 8.333333%;
+  }
+
+  .wk-mobile-2 {
+    width: 16.666667%;
+  }
+
+  .wk-mobile-3 {
+    width: 25%;
+  }
+
+  .wk-mobile-4 {
+    width: 33.333333%;
+  }
+
+  .wk-mobile-5 {
+    width: 41.666667%;
+  }
+
+  .wk-mobile-6 {
+    width: 50%;
+  }
+
+  .wk-mobile-7 {
+    width: 58.333333%;
+  }
+
+  .wk-mobile-8 {
+    width: 66.666667%;
+  }
+
+  .wk-mobile-9 {
+    width: 75%;
+  }
+
+  .wk-mobile-10 {
+    width: 83.333333%;
+  }
+
+  .wk-mobile-11 {
+    width: 91.666667%;
+  }
+
+  .wk-mobile-12 {
+    width: 100%;
+  }
+}
+	</style>
+</head>
+<body>
+    
+	<nav class="navbar navbar-expand-lg navbar-light  navcss">
+		<a class="navbar-brand navfont" href="{{ url_for('home') }}">Tealeaves Disease Detector</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+	  
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		  <ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+			  <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item active">
+			  <a class="nav-link" href="{{ url_for('index') }}">Detect</a>
+			</li>
+			<li class="nav-item dropdown active">
+			  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Services
+			  </a>
+			  <div class="dropdown-menu  navcss" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="#">Live Demo</a>
+				<a class="dropdown-item" href="{{ url_for('pricing') }}">Pricing</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="{{ url_for('diseases') }}">Diseases</a>
+			  </div>
+			</li>
+		    <li class="nav-item active">
+				<a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
+			  </li>
+			  <li class="nav-item active">
+  				<a class="nav-link" href="{{ url_for('aboutus') }}">About Us</a>
+  			  </li>
+		  </ul>
+		  <form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		  </form>
+		  <div class="dropdown" style="margin-left: 20px;margin-right: 70px; background-color: rgb(205, 245, 208);">
+			<button class="btn  dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<img src="{{ url_for('static', filename='images/login.jpg') }}" alt="" class="loginimg">
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="background-color: rgb(205, 245, 208);" >
+			  <button class="dropdown-item" type="button">Login</button>
+			  <button class="dropdown-item" type="button">Signup</button>
+			  <button class="dropdown-item" type="button">My account</button>
+			</div>
+		  </div>
+		</div>
+	  </nav>
+	  
+	<h1 style="text-align: center; background-color: rgb(246, 232, 217); font-family: 'Times New Roman', Times, serif; padding: 30px; font-weight: 1000;">About Us</h1>
+	  <!-- About us -->
+      <div class="responsive-container-block bigContainer" style="background-color: rgb(246, 232, 217);">
+		<div class="responsive-container-block Container" style="padding: 40px;">
+		  <div class="imgContainer">
+			<img class="blueDots" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/cw3.svg">
+			<img class="mainImg" src="https://img.jagrantv.com/webstories/ws3952/1683278695-1.jpg">
+		  </div>
+		  <div class="responsive-container-block textSide">
+			<p class="text-blk heading" style="font-family:'Times New Roman', Times, serif">
+			Our Mission
+			</p>
+			<h1>...</h1><br>
+			<p class="text-blk subHeading">
+				Welcome to the Tea Leaves Disease Detection Project, where we leverage the power of Artificial Intelligence (AI) and Machine Learning (ML) to revolutionize the way we monitor and manage diseases affecting tea plants. Our mission is to empower tea farmers with cutting-edge technology to enhance crop health, yield, and sustainability.
+			</p>
+			<p class="text-blk heading" style="font-family:'Times New Roman', Times, serif">
+				Our Vision...
+				</p>
+			<p class="text-blk subHeading">
+				At  this website, we envision a future where precision agriculture meets traditional tea cultivation, fostering a harmonious balance between technology and nature. By detecting diseases early and accurately, we aim to contribute to a thriving tea industry while promoting environmental stewardship.
+			</p>
+			<div>
+				<h1 style="font-family:'Times New Roman', Times, serif" >Meet Our Team...</h1>
+			</div>
+			<div style="padding: 20px;">
+			        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUQEBMTFhAWFRoXFRUVEBcWFxgVGBUWGBUSGBgYHiggGBsnGxkVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGxAQGi0lHyUtLy8tLS8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALIBGwMBIgACEQEDEQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAABgEDBAUHAgj/xABIEAACAQIEAwQFCgMECAcAAAABAgADEQQSITEFBlFBYXGREyJSgaEHIzJCcpKxssHRFILCM0Ph8BUkU2Ki0uLxFzRjc4OTw//EABoBAAIDAQEAAAAAAAAAAAAAAAADAQIEBQb/xAAzEQACAQIDBAkDBAMBAAAAAAAAAQIDEQQSITFBUaEFEzJhcYGRsfAiwdEjQuHxFBVSM//aAAwDAQACEQMRAD8A7jERABERABERABERABERABERABERABERABETxUawJhcDX4uqWNgdBpMQ1wth6TKx2Bb9DNZjOLFHqIVFwAVOupNt/dfymlxPEPSVDmDB1VTmy2p2JYBQeosSR2XHWc36pPMzpQo7E9h0DBVy2jbjt7plzU8BxKVqYr0jmpOAUYdo6ibabaObIsxgqJZtBERGlBERABERABERABERABERABERABERABERABEShgBWUJll6/TzlhmJ3llBso5oymqgS2cR0EsSsuoIpnZcOIPdHpz3S3EtlRGZl0Vz0E9rXHbMeJGRE5mZisDtPUwQZdp1+so4NbCynxMmeSL6TVcxcWGGoGqLFycqA7Fj17gLn3TnOJ5gxTklq9QX7FbIPCy2mapWjDRnQw2CnXjmTSXebji2J9JVY/VBIX7IJt+8xKOHZmCINWIAse337TXUuI6WdTfqO39pe4Xx6rQf0ihWHsso26BhqPGZFKNzq/49RRaitnM6jw/DClTSmPqqBfqe0+cypg8K4gmIpLVTY7g7gjdTM6dBWtocCSkpNS2iIiSVEREAEREAEREAEREAEREAEREAEREAERPFR7eMAbsHqATFdyd5RmvqZSNjGwmUriViJcqIiIAIiIAIiIAJSVlDAGQXnnG5qq0RtTFz9prH4DL5mRkmX+IYj0lV6ntOx9xJt8LTHM4lSeeTkeyw1LqqUYcFz38ysREoPJr8m+L1rUT3OPyt/RJ1OV8k4kJi0vs4Ke8gEfECdUm/Du8LHnekqeWu3xSf2Ei3OPNq4LKiqKldtchYqAmozk2PaLAePSSmcT57D1OI11UMxBUAAEmwpKdAOzcxsnZGfD01OdmZzfKRjc1wtEJe+XIT6vsls3Ttk95R5lTG0y1glVDZ6ebNYH6LA2FwfxBnOcJympQekq2qMoKrYDKSLkEE3bppabjkbguIw2MBtmosjB2Rhl2uuYHXcdl9/GKhUvKxqr0IZG0rWOnxER5zhERABERABERABERABERADy7WF5hu1zcy5Xe5t0lqNgt4qb1sJWIlygiIgAiIgAiIgAiIgAlnEoGRla+UqQ1jY2IN7Hs0l2WsTTzIyg2LKRfxBF5D2Eraczq8O9lhbof3EwLayTYnB1KejqR39h8DsZrMRgAdV0Pw/wAJxpQsetpYhPa795rInqpTKmzCxnmLNa11JBys6U6lOqw7Tc2vYG4ms4v8rddK9VKFKg1FXKozZyWUG2bRgNd/fM7iFNKPCzi85FT1kA3BY1Cq26W3905DOxgaN4NyXCx5jpGopVbLarp+T0Ojf+MOM/2GG8qn/NK8rY6pjcXUxjKqkg5wt8oYgBQLknW15DuFcuYiuA6qFpnZnNge8AAk+Vp0fk7hIwtE0ywaozlmIFhsAAL9lh8TGYynFUm0hOCqfrWvtRt61G7Kxv6t7AHS5tqV7SLadJvOVcDkFSoSSXc72Gl72suhte1zrpqZpq1YLYMNz5C+pku4ZWptTHoiCo07x4jsMw0acrZ2tNxrxdaNurT13mbERNBgEREAEREAEREAEREAE8u1heepj4lthJSuyG7IsSsRHiBERABERABERABERABKTVc08YGDwtXEnLdB6oYsFZyQFUlQSLkgbeW8+eOYuacTjXz1qjWBfIoNgtNnD+iJUDOAVWxIv6o7pZRuTY+mKVdG0VlY2B9VgdDcA6dmh8jLk+W+Bcw4nBszYWqaZdcrHIraC9tGB2LEjvn0hyxxT+KwtHE5WX0iXsxUm1yAxK6a2vbS19hIlGwNHrmI2wtY9KbEm+wAuT5AzmdLjQG7qR37+cnvP+IyYCtbdgqfedQfhecXtKPCRrfU21uNeGxsqEXFRTTd9b/YleP5ipIoIQ1GvYBbG2h9bXsmubmxSuVqFYtbovuO800Zdby6wFJLW7JfSFW942RvuO1sZi8Hh8PRwWLFJS1RmNElXLXyMuW+gDN5yOYblzFF1D4auqFgGJpMAFuMxJ7NLzsXIeLL8PTXWmXTyN1/4WWZONNqbeH46S8Hk+hLRaGWpJzbm9ruzRqANALAaADsHYJSVlJrMRUmZ/A8WaVZTf1WOVulj2+46zAlDKuKkrMlOzudOiY2Bq56aOd2QE+JGsyZyjoiIiACIiACIiACIiACYdU+sZmTBY6y8NpSbESkrGihERABERABERABKSsQA1/HOE0sXRahXXNTaxy5mX1lOZTdSDuAbTgL8NoBWORr0zZruBtZjm9xA2vafRs5Dzbw00MXUAHquTUWwGof9iCPdFVZOKTTNmDUZNxdvP54EQxXAVYJl9SwIbKc259XU22uZ2L5LKjHhWFzbhXUfZWtUVfgBOavTBUqb2IIOuuotv2Tr/KWGSlgsNTp6otFACdz6ouT33vIpVHJNNl8bSjCzivnhsNP8qDWwVutZB8GP6Tks6x8qf8A5Nf/AH1/JUnJ5vo9k57ECDKxoHRvkxq3w+ITpUDfeQD+mSDHD5tvD9ZGfkuPzeKHfT/B/wBpKqiBhY7GZZaTZZ9kj88ibE4Reh85h1qRU7adktSxVOq8sdvfoRXwdWjHNK1u7+i3AW5AG95WENiDNDvbQzK19dnz7E14CclBVJJ37NtTpNl6cd8jnDcVlbKfon4HsM3M5VKSqrM9u86eIpujPLu3eH8GT6cd8qKw/wAiY0RmRCM7MtXB2M9zAntKhEhw4EqfEzIlunVB8ZcixidxERAChmDM4zBjKYupuKxERgsREQAREQAREQAREQApNNxzh1HEqFqKTl+iwNmF9wO7xmzxTWXx0mJObjcRKLyR8zdhKV/rfkc5r8r4j0rIiepmOVywtlvoSfC3ZJ5wLDth6KUc2bLfUjqSSB3XMypQTE8RU3OxumlNWkiOfKbVzYNevp1/JUnLJ1jnmjmwVXquVh7nW/wJnJ53+jqrqUby2p25J/c5OJpqE7LYDElHLPBDXweNcC7KE9H1zJmdgPEWHvkYm1O7aEHQvkvX5rEnqyDyDfvJVIz8l6Xw+Ituag/IJJjMtTtsutiNdUxChip0sfdLmhHYRNU7XJPU3hHI2Noqp0fF6wdn880aKXSckrTV1z/D5GTWwnavlMYDW3fLzcTCC9QqB1JAnvDY6jW+iwJHZ9FvdfceEiGJq01+osyW9fLe3mWqYOlV1pPK3+1/Lrw18iQcRwG7ptuR+ol3C8QXITUYKVF2JNhYbtIrxvjOKpAGm4akfVbMoLA69vTeQ3mHj9Rw1HN6pYsdrhT9GmSN5Wjh3JqpTtle35xJrStB06u1bH5e3zcT7iHyhYKnoheqf9xbD7zWmjw/PuLxlZcNgqNNGY/Se75VH0nNrAAD9u2c3uSbKCSdAALk9wA3naOQeWRg6OeoP9ZqgFz7I3WkPDt6nwE3zhCmr21MJJqSkKAWLEAAsQASbatYaC/dLkRMpJQGZlN7jvmJPVJ7GUlG5aLszMiIihwmAZnzCqjUy8BdQpERGixERABERABERABERADExh2EsTWcR4uVxyYUKCrICTc3DeufeLAad82c4WLv1zbOvh1anHwEoJWUEzDjXcx082ExA/8ARc+8KSPwnG52bmIE4XEAb+iqfkM4z4b9k73Q7vCXivY5uN7S8Dr3yc4LJgVOzVWZ/M5VPkoPvnIBsJ9AcMwopUqdEbIip91QJwC1tOk6FF3bfzeY2dG+SioPR117Q6H3MpA/KZOXpg7gGcv+TnEmm2KqbhKGbLewOVgbeNrgeMmuE5wwjjWoabezUUi3vF1+MzV5RjNpsfThKUbpGdV4NROylfBj+txNHxLAmk1r3U7H8Qe+b6nxrDNtiKP/ANq/qZq+P8Rw7KoWvRJBP96p0t3GUnNyjbNzLU4KM725GgxeBp1Raoga2x2I8GGo901GI5eI1o1P5amo9zDUeRm6bG0R/e0/vX/CWn4pRH96vuVz/TKQrzp9mVvM0ypRn+2/kzS4j+MZfRMhLXBU3XJe1s5Pxsdyb2lrB8ofWr1CTuVTr3sdT5CSehWV1Dqbqdja3dPZjHip2tGy8EV6iN7yu/ExcFw+lSHzSKveB63vY6mTvhNcvRRjvax9xIv8JDhJVy6fmR9pvxi4NuWpTEJZF4m0iUlY8xiUlYgBl02uBPcs4fb3y9ENWY9PQTFxA1vMqWq63HhJi7MiS0MaJSVjhIiJSAFZSJbr11QZnYKOpP8Am8hu2rJSb0RzvmTmzF8MxrJUHpsHV+cphtGUHR0V+5r6G+hXaSvl7mzC40AUalqltaT+rUHgNm8VJkS+VCpTxWHBpqc1Alw50uhFnW3S1m/kE5VTe1iDYjUEGxB7CIyi6daN4vZoXqUp02lNWufT8j3NXMq4ZciWbEEaDcIPbb9B2+E53gOd8ScMtFqpBS4eqb5yn1bvqe0i410GszOE4ZWY1Xy1VvoSzFWO5YkEFv1mTEVuq0enf+DXhcJntJu/d+TN5OpvUxJrvmaysS5BPrmwsT1sTpJ3I1S5tpKPRsqqij1VpIbX6b2ms4lznUbSgopj2msze4bD4zl1IOpO8dnfob0pvarc+ZLuIcRpUFzVXC9BuT4DcyEcf5kauQKYamqm4bMQ5uLa20A7tZrqeCxFdswSpUY/WIP5m0+M22D5NrtrUZEHT6beQ0+MtGEKesnqWSUdpGOJ4p2Wzu7a/Wcn8THK+E9Li6FPsNVSfsqc7fBTNnzrwdMMKKozMWzlie7JawG25mT8l2FzYtqnZTpMf5mIUfDNO5hWv8fMt9/wcjGSzVX5HWROAcTp5a1VPZquPJyJ36cR5yw+THYhetQt98B/6oyi9WZi/wArVctLFnrSRfvVRf4AyW8hcPSp6V6iI6jKoDKGF9S2h/l85BuDVbLUX2ih9y5/1InU+R8Plwobtdmb45R8FmOss2J8EbIvJhb8X89iN82YSkuIKpTpqAq6KiqLm5vYDvE2vFeA0RgMy0qYqrTRywQBrjKXubX2vNZzCM+MdR2sqj7qiT3E0A6NT+qylfcRaIpwUpT9BlWo4Rp+vsQbkLC0XaqtSlTcgKy56atbVgbXHeJNU4dRX6NKiPCko/ASCcjVCmKyndkZSO8EN/SZ0SMw1nTE41WqvyIdxlbVnA2uPyiYZmfx0fPv7vyiYdGkXOUb6nyBb9JEtrHw7K8DxJTy5/Y/zH9JFpKeW/7H+c/pLU9pTEdjzNpKxE0GEREpADJw23vl6W6I0lyIltHx2CUIlYkEmBU0v1Eoss1anzhO4v2dJDsPxOpTxpWs7BFqMArOWAVrhbX12IN+0SJVbSXjYZSw2eMrblf+icTy7AC5IAG5JsJHsdzLraioI9pv0E02Lx1Sr/aMSOmw8hpFVMdTj2dfYvS6PqT1loufp+WbziPMQHq0Rc+2dvcO2R/EYhnOZ2LHqT+HSWpQmc2rWnU7T8tx1qOHp0l9K895Ui+h2kV43ympu+Gsrf7P6p+yfqnu28JKbwBCjXnSlmg/nf8APAtVowqxyzRyl0ZGNOopVtiDoe6ZPD8c1JtGYIdGUHcWtqJ0HinCqWIXLVXUfRYaMvgf02miTkpPr1nP2UVfxvOzHpKjUptVVbutf0OTLAVoTTpu/IxuG8Sw7HLVZk6E/RPcT9Xyt3yZcPYUgDSCW3vkVr9+Yi/xmipcoYUfSFRvGoR+W02+CwdOiuSkuVL3tcnU77mc3FVKMn+k5eDtb3vyOjQjVWlVLy2+xJMHxkHSoLf7w2947Jtgb6jaQyXsPi3T6DEDpuPI6TEXlRX7TTfKbVvXpJ0pX+87D+mbz5JsLalWre1UCDwRb/i/wmPxXBUsQVqVkLVAgXMHZbi5IuAbfW7Ju+AYqnQorRpqqgEnVmNyTcm5M9Nh4yWGjG2731PO15R62Wu/20JTOV/KphMmKSr2VKdv5kNj8Ck6D/pNui/GazjeOZgosu5O14yCkndIXmjvOYcKHqse/wDD/vO2cMw/o6NOn7KKD4gC/wAbzmuJbNiFDagFQR1AOYj8ZOE5gB3AHjeZ4RlOrOVt9vQ015qNKnHuuR7Dr6TiP/zsfchJH5ZPJAuXa3+stVtfRz72P+Jkr/0mfZHnF4WLcXLiycY0pqPBIh4X0PFLdnptPCqP+udCnPObapGIp1wLGyn3o37ZZMRxTtyj73+EmhFqU48H7hiJZo05cV7Gn5iHzx71X8LfpKcvJesO5WPwt+s9cYzVHzhdMoG/S8xuGYk0q6Ag+sGFu619/ESJPLU14jUnKjdcDHrJlZl6EjyNpJOWj8yftn8BNTjcPmqMwNrm9ul/8mZvB+IUaYNEOGqA3ZQy3BsNLXv2Qp/+jjvRFd3oqe5kglJijiCd/lKjHU/a+BmmzMN0ZMqovpLK4hDsy+cy8ML6ysnZFkrsyLSsREDzR4vizEkU9B13J/aa6pVZvpMT4m82eK4Qbk07EeydCO4GYFTCuu6N5X+ImqGXcZp5t55oVcp7u395rebuGhkOIXR0Azd6XsD4gka9PATNMrW9dDTfVDuD2gEG3hoIuvQ6xD8JiuompfLb0RDhz5k62Npk5pvf4Kn7C+WmgtttLoortlW32ROf/rJt6yXM6Uul4N3UH6ojk9ASQrRUbKv3RPYEldFvfPl/JR9LLdDn/BoEwznZW8pdXh9Q9lvEibqVjo9GU1tk+S+wiXSlR9mKXq/waQ4Cp7P/ABD954ODqeyfKb6IPoylub5fgF0rV3xjz/JoDhX9hvumef4d/Zb7pkgiV/1cP+mW/wBrP/lczQDDP7LfdMyMPw9ifW0X4zbysvHo2mn9TbKz6UqtWikjQ4yliA7ZKKsl/VIrBTaw3DDTzlsCv24ap7qlE/8A6XkhidJSkt5zNOBq+HU6uYFkKL2hmUk9LBCR7yfdPfFsFVqFTSqIlr3D0ywN7WNwQR2+c2MSG23cCKYbhWINZicoYX9dlbI3Z6oBvt36TZDhtb6z0x9lGJPhc2HkZuZWUpw6tNJ7W36jKtTrGm0tEl6Gk5bokZ2II2AuLdSf0m7lJWVpU+rgoomtVdSbm95puZsG1RFKKWZW2AubEa/ECbLBg+jTMLNkW477C8vRJVNKbnxtyIdRuChwb5kZ5txmKpvTOGVioVi9kzKSSLA+Fu7eRDivF8VVZWcshTbJmSx9rffsvOqwe+MSinmyq/HeCqyUcl3bgce/jMQ9QP6SqapAUMGYMQNhcazOblrGMc7U2LHUkkXue063vOoLSUG4VQeoUX857jOs4Irmewg/AMBxJKi3dxSDDMKjhgVv6wANyNL7ScykrKNtkNlJVWI1BIPcbRPaYdzsrH+Uyr7yPAyaHE6i7nMOh/febWnxKmQCTY9Ok1lHhVQ72Ud5ufITaU+GUwAMoPed4ifV/wBDoZzNiIiB54dR0HlLVTDpb6K/dERLU9pWoYdagnsr90TBqIOg8oiPQiRisJ5MRLooUiIliAJ6ERAAIAiJUkvhB0HlKhB0HlESpcZB0HlGQdB5REkqMg6DylCg6DyiIAUKDoPKVyDoPKIkgWSIlIkIEViUiSQVEuqg6DyiJAHtEHQeUyKdJfZHkJSJVkozKWHT2F+6JlLh09hfuiIkMai4ijoPKe4iZh4iIkkH/9k=" alt="">
+			</div>
+			<div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12" style=" padding: 20px;">
+			  <div class="cardImgContainer">
+				<img class="cardImg" src="https://smsdelhibmw.co.in/wp-content/uploads/2022/02/User-Profile-PNG.png">
+			  </div>
+			  <div class="cardText">
+				<p class="text-blk cardHeading" style="font-family:'Times New Roman', Times, serif">
+					Adharsh Raj Kavala
+				</p>
+				<p class="text-blk cardSubHeading">
+				 email : adharsh@gmail.com
+				</p>
+			  </div>
+			</div>
+			<div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12" style=" padding: 20px;">
+			  <div class="cardImgContainer">
+				<img class="cardImg" src="https://smsdelhibmw.co.in/wp-content/uploads/2022/02/User-Profile-PNG.png">
+			  </div>
+			  <div class="cardText">
+				<p class="text-blk cardHeading" style="font-family:'Times New Roman', Times, serif">
+				  Madathala Madhava Reddy
+				 
+				</p>
+				<p class="text-blk cardSubHeading">
+					email : madhava@gmail.com
+				</p>
+			  </div>
+			</div>
+			<div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12" style=" padding: 20px;">
+			  <div class="cardImgContainer">
+				<img class="cardImg" src="https://smsdelhibmw.co.in/wp-content/uploads/2022/02/User-Profile-PNG.png">
+			  </div>
+			  <div class="cardText">
+				<p class="text-blk cardHeading " style="font-family:'Times New Roman', Times, serif;">
+					Shriyukta Sinha
+				</p>
+				<p class="text-blk cardSubHeading">
+					email : shriyukta@gmail.com
+				</p>
+			  </div>
+			</div>
+			<div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12" style=" padding: 20px;">
+			  <div class="cardImgContainer">
+				<img class="cardImg" src="https://smsdelhibmw.co.in/wp-content/uploads/2022/02/User-Profile-PNG.png">
+			  </div>
+			  <div class="cardText">
+				<p class="text-blk cardHeading " style="font-family:'Times New Roman', Times, serif">
+					Anant Krishna
+				</p>
+				<p class="text-blk cardSubHeading">
+					email : anant@gmail.com
+				</p>
+			  </div>
+			</div>
+			<a href="{{ url_for('contact') }}"style=" padding: 50px;">
+				<h>For more info...</h>
+			  <button class="explore" style="background-color: rgb(139, 252, 139);">
+				Contact us
+			  </button>
+			</a>
+		  </div>
+		  <img class="redDots" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/cw3.svg">
+		</div>
+	  </div>
+	  <!-- About us -->
+	 
+	 
+	  <!-- footer -->
+	 <section id="contact" class="gradient-background" style="background-color: rgb(205, 245, 208) ;">
+		<a style="font-family: 'Great Vibes', Agbalumo  ;font-weight: 1000; font-size: 40px; margin-left: 90px; text-decoration: none; color: black;" href="{{ url_for('home') }}">Tealeaves Disease Detector</a>
+		<div class="container ">
+		  <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 mt-5 border-top">
+			<div class="col mb-3">
+	
+			  <h5 class = "text-uppercase fw-bold mb-4">Reach At</h5>
+			 <ul class="nav flex-column">
+			   <li class="nav-item mb-2">
+				<p>
+				  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+					<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+				  </svg> Location
+				 </p></li>
+				 <li class="nav-item mb-2"><p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+				   <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+				 </svg> + 01 234 567 88</p>
+				
+			   </li>
+			   <li class="nav-item mb-2"><p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+				<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+			  </svg> demo@gmail.com</p>
+			 </li>
+			 <li class="nav-item mb-2">
+			   <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+				<path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+			  </svg>
+			  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+				<path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+			  </svg>
+			  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+				<path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/>
+			  </svg>
+			  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+				<path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+			  </svg></p>
+			 </li>
+			 </ul>
+			</div>
+	
+		
+	
+			<div class="col mx-3 mb-3">
+			  <h5 class = "text-uppercase fw-bold mb-4">About</h5>
+			  <p>Cultivate a healthier tea harvest with our groundbreaking deep learning project. Using Convolutional Neural Networks, we predict diseases in tea leaves, ensuring a bountiful and robust yield.</p>
+			</div>
+		
+			<div class="col mx-5 mb-3">
+			  <h5 class = "text-uppercase fw-bold mb-4">Links</h5> 
+			  <ul class="nav flex-column">
+				<li class="nav-item mb-2"><a href="{{ url_for('home') }}" class="nav-link p-0 text-body-secondary">HOME</a></li>
+				<li class="nav-item mb-2"><a href="{{ url_for('aboutus') }}" class="nav-link p-0 text-body-secondary">ABOUT US</a></li>
+				<li class="nav-item mb-2"><a href="{{ url_for('index') }}" class="nav-link p-0 text-body-secondary">DETECT</a></li>
+				
+			  </ul>
+			</div>
+	
+			
+			<div class="container p-4 pb-0">
+			  <!-- Section: Form -->
+			  <section class="">
+				<form action="">
+				  <!--Grid row-->
+				  <div class="row d-flex justify-content-center">
+					<!--Grid column-->
+					<div class="col-auto">
+					  <p class="pt-2">
+						<strong>Sign up for our newsletter</strong>
+					  </p>
+					</div>
+					<!--Grid column-->
+		  
+					<!--Grid column-->
+					<div class="col-md-5 col-12">
+					  <!-- Email input -->
+					  <div class="form-outline form-white mb-4">
+						<input type="email" id="form5Example29" class="form-control"/>
+						<label class="form-label" for="form5Example29">Email address</label>
+					  </div>
+					</div>
+					<!--Grid column-->
+		  
+					<!--Grid column-->
+					<div class="col-auto">
+					  <!-- Submit button -->
+					  <button type="submit" class="btn btn-outline-darrk mb-4">
+						Subscribe
+					  </button>
+					</div>
+					<!--Grid column-->
+				  </div>
+				  <!--Grid row-->
+				</form>
+			  </section>
+			  <!-- Section: Form -->
+			</div>
+			<!-- Grid column -->
+		  </div>
+		  <!-- Grid row -->
+		</div>
+		  </footer>
+		</div>
+	  </section>
+	 <!-- footer -->
+</body>
+</html>

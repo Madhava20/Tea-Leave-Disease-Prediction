@@ -14,38 +14,14 @@ TeaLeafNet is crafted with the aim of providing an efficient, accurate, and scal
 
 - **User-Friendly Interface:** Seamlessly integrate TeaLeafNet into your workflow with a user-friendly interface, making disease detection accessible to all.
 
-## 📁 Repository Structure
-
-- **`/src`:** Contains the source code for training and deploying TeaLeafNet.
-  
-- **`/datasets`:** Explore and augment your datasets for optimal model performance.
-  
-- **`/models`:** Save and access pre-trained models for quick implementation.
-
-## 🛠️ Getting Started
-
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/your-username/TeaLeafNet.git
-   ```
-
-2. **Install Dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Run the Demo:**
-   Explore the demo notebook to witness TeaLeafNet in action.
-
 ## 🤝 Contribution Guidelines
 
 We welcome contributions from the community to enhance TeaLeafNet. Feel free to open issues, submit pull requests, or share your experiences using the model.
 
 ## 📚 Resources
 
-- **Documentation:** Explore detailed documentation in the `/docs` directory.
-  
-- **Research Paper:** Read our research paper for a deeper understanding of TeaLeafNet's architecture and methodology.
+- **Documentation:** Explore detailed documentation in the `Tea Leave Disease Prediction` directory.
+- **coding:** Explore detailed coding part in the 'Project_Development_Phase' folder.
 
 ## 🌏 Join the Community
 
